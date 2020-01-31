@@ -1,0 +1,43 @@
+builds:
+- id: darwin-amd64
+  binary: ltsvq
+  env:
+  - CGO_ENABLED=1
+  - CC=o64-clang
+  - CXX=o64-clang++
+  main: ./main.go
+#  ldflags:
+#    - -s -extldflags "-sectcreate __TEXT __info_plist Info.plist"
+  goos:
+    - darwin
+  goarch:
+    - amd64
+- id: linux-amd64
+  binary: ltsvq
+  env:
+  - CGO_ENABLED=1
+  main: ./main.go
+#  flags:
+#    - -tags "netgo"
+  ldflags:
+    - -extldflags "-static"
+  goos:
+    - linux
+  goarch:
+    - amd64
+- id: windows-amd64
+  binary: ltsvq
+  env:
+    - CGO_ENABLED=1
+    - CC=x86_64-w64-mingw32-gcc
+    - CXX=x86_64-w64-mingw32-g++
+  main: ./main.go
+#  flags:
+#    - -tags "netgo"
+  ldflags:
+    - -H=windowsgui
+    - -extldflags "-static"
+  goos:
+    - windows
+  goarch:
+    - amd64
