@@ -99,7 +99,8 @@ func main() {
 		if err != nil {
 			break
 		}
-		err = table.Insert(line)
+
+		err = table.Insert([]byte(strings.TrimSpace(string(line))))
 		if err != nil {
 			logger.Printf("failed to convert ltsv: %s", err)
 		}
